@@ -3,26 +3,586 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Tutorial WinCUPL | 11.º TGEI</title>
+
 <style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#222;line-height:1.6}header{background:#222;color:#fff;text-align:center;padding:55px 20px}header h1{margin:0 0 10px;font-size:38px}header p{margin:5px 0}nav{position:sticky;top:0;z-index:10;background:#333;text-align:center;padding:12px 10px}nav a{display:inline-block;color:#fff;text-decoration:none;margin:4px 10px;font-size:14px}nav a:hover{text-decoration:underline}main{width:min(950px,92%);margin:35px auto}section{background:#fff;margin-bottom:25px;padding:30px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.07)}section h2{margin-top:0;font-size:25px;border-bottom:1px solid #ddd;padding-bottom:10px}.numero{color:#666;font-size:14px}.foto{margin:25px 0;text-align:center}.foto img{display:block;width:100%;max-width:850px;max-height:650px;object-fit:contain;margin:0 auto;border:1px solid #ccc;border-radius:5px;background:#eee}.foto .legenda{margin-top:9px;color:#666;font-size:14px}.codigo{background:#1f1f1f;color:#eee;padding:20px;border-radius:5px;overflow-x:auto;font-family:Consolas,"Courier New",monospace;font-size:14px;white-space:pre}table{width:100%;border-collapse:collapse;margin-top:15px}th,td{border:1px solid #ccc;padding:10px;text-align:center}th{background:#eee}.resultado{padding:15px;background:#f1f1f1;border-left:4px solid #555;margin-top:20px}ul{padding-left:25px}a.fonte{color:#333}footer{background:#222;color:#fff;text-align:center;padding:25px 15px;margin-top:40px}@media(max-width:650px){header h1{font-size:30px}section{padding:20px}nav a{margin:3px 6px}}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fa;
+    color:#202124;
+    line-height:1.6;
+}
+
+/* ---------- HEADER ---------- */
+
+header{
+    background:linear-gradient(135deg,#151515,#303030);
+    color:white;
+    padding:70px 20px 80px;
+    text-align:center;
+}
+
+header .tag{
+    display:inline-block;
+    background:#444;
+    padding:7px 14px;
+    border-radius:20px;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+header h1{
+    font-size:48px;
+    margin:0 0 12px;
+}
+
+header p{
+    margin:5px 0;
+    color:#ddd;
+}
+
+header .autores{
+    margin-top:22px;
+    font-size:14px;
+    color:#bbb;
+}
+
+/* ---------- NAV ---------- */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#202124;
+    padding:12px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+nav a{
+    color:#eee;
+    text-decoration:none;
+    margin:0 10px;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:white;
+    text-decoration:underline;
+}
+
+/* ---------- CONTAINER ---------- */
+
+main{
+    width:min(1000px,92%);
+    margin:40px auto;
+}
+
+/* ---------- INTRO ---------- */
+
+.intro{
+    background:white;
+    border-radius:14px;
+    padding:35px;
+    margin-bottom:30px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.intro h2{
+    margin-top:0;
+}
+
+/* ---------- BOTÃO ---------- */
+
+.botao{
+    display:inline-block;
+    margin-top:15px;
+    padding:13px 20px;
+    background:#222;
+    color:white;
+    text-decoration:none;
+    border-radius:7px;
+    font-weight:bold;
+}
+
+.botao:hover{
+    background:#444;
+}
+
+/* ---------- PASSOS ---------- */
+
+.passos{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.passo-mini{
+    background:white;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:14px 8px;
+    text-align:center;
+    font-size:13px;
+}
+
+.passo-mini strong{
+    display:block;
+    font-size:18px;
+    margin-bottom:4px;
+}
+
+/* ---------- SECÇÕES ---------- */
+
+section{
+    background:white;
+    border-radius:14px;
+    padding:35px;
+    margin-bottom:25px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.numero{
+    font-size:13px;
+    color:#777;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+section h2{
+    margin:4px 0 18px;
+    font-size:28px;
+}
+
+/* ---------- OBJECTIVO ---------- */
+
+.objectivo{
+    background:#f1f1f1;
+    border-left:5px solid #333;
+    padding:16px 18px;
+    border-radius:5px;
+    margin:20px 0;
+}
+
+.objectivo strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+/* ---------- VIDEO ---------- */
+
+.video{
+    margin:25px 0;
+    background:#111;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.video video{
+    display:block;
+    width:100%;
+    max-height:560px;
+    background:#111;
+}
+
+.video-info{
+    padding:12px 15px;
+    color:#bbb;
+    font-size:13px;
+    background:#191919;
+}
+
+/* ---------- CÓDIGO ---------- */
+
+.codigo-area{
+    position:relative;
+    margin-top:20px;
+}
+
+.codigo{
+    background:#181818;
+    color:#eee;
+    padding:22px;
+    border-radius:9px;
+    overflow-x:auto;
+    font-family:Consolas,"Courier New",monospace;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.copiar{
+    position:absolute;
+    right:10px;
+    top:10px;
+    border:0;
+    background:#444;
+    color:white;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.copiar:hover{
+    background:#666;
+}
+
+/* ---------- PASSOS INTERNOS ---------- */
+
+.lista{
+    padding-left:22px;
+}
+
+.lista li{
+    margin:10px 0;
+}
+
+/* ---------- RESULTADO ---------- */
+
+.sucesso{
+    margin-top:20px;
+    padding:18px;
+    border-radius:8px;
+    background:#f1f1f1;
+    border-left:5px solid #222;
+}
+
+.sucesso strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+/* ---------- TABELA ---------- */
+
+.tabela{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.tabela th,
+.tabela td{
+    border:1px solid #ccc;
+    padding:12px;
+    text-align:center;
+}
+
+.tabela th{
+    background:#eee;
+}
+
+/* ---------- ERRO ---------- */
+
+.erro{
+    background:#f5f5f5;
+    border-left:5px solid #555;
+    padding:18px;
+    border-radius:7px;
+}
+
+.erro h3{
+    margin-top:0;
+}
+
+/* ---------- CHECKLIST ---------- */
+
+.checklist{
+    list-style:none;
+    padding:0;
+}
+
+.checklist li{
+    background:#f5f5f5;
+    padding:13px;
+    margin:8px 0;
+    border-radius:7px;
+}
+
+.checklist input{
+    margin-right:10px;
+}
+
+/* ---------- FONTES ---------- */
+
+.fontes a{
+    color:#222;
+    font-weight:bold;
+}
+
+.fontes li{
+    margin:12px 0;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    background:#202124;
+    color:#ddd;
+    text-align:center;
+    padding:35px 20px;
+    margin-top:50px;
+}
+
+footer p{
+    margin:5px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:700px){
+
+    header h1{
+        font-size:36px;
+    }
+
+    .passos{
+        grid-template-columns:1fr 1fr;
+    }
+
+    section{
+        padding:23px;
+    }
+
+    nav a{
+        display:inline-block;
+        margin:4px 6px;
+    }
+
+}
+
 </style>
 </head>
+
 <body>
+
 <header>
-<h1>Tutorial WinCUPL</h1>
-<p>Instalação, criação e compilação de um projeto</p>
-<p>Salvador Rosário — N.º 15 | Santiago Martins — N.º 17</p>
-<p>11.º TGEI</p>
+
+    <div class="tag">11.º TGEI · TUTORIAL PRÁTICO</div>
+
+    <h1>WinCUPL</h1>
+
+    <p>Do primeiro projecto à compilação</p>
+
+    <div class="autores">
+        Salvador Rosário — N.º 15<br>
+        Santiago Martins — N.º 17
+    </div>
+
+    <a class="botao" href="#tutorial">Começar tutorial ↓</a>
+
 </header>
+
+
 <nav>
-<a href="#inicio">Início</a><a href="#instalacao">Instalação</a><a href="#projeto">Projeto</a><a href="#codigo">Código</a><a href="#compilacao">Compilação</a><a href="#problema">Problema</a><a href="#conclusao">Conclusão</a><a href="#fontes">Fontes</a>
+
+    <a href="#tutorial">Tutorial</a>
+    <a href="#instalacao">Instalação</a>
+    <a href="#projeto">Projecto</a>
+    <a href="#codigo">Código</a>
+    <a href="#compilacao">Compilação</a>
+    <a href="#problema">Erros</a>
+    <a href="#checklist">Checklist</a>
+    <a href="#fontes">Fontes</a>
+
 </nav>
+
+
 <main>
-<section id="inicio"><h2>Introdução</h2><p>Neste trabalho apresentamos os passos que seguimos para instalar o WinCUPL, criar um projeto simples e verificar a sua compilação.</p><p>O projeto foi realizado por Salvador Rosário e Santiago Martins, do 11.º TGEI.</p></section>
-<section id="instalacao"><p class="numero">01</p><h2>Instalação do WinCUPL</h2><p>Primeiro fizemos o download do WinCUPL e iniciámos a instalação. Seguimos os passos apresentados pelo instalador até terminar.</p><div class="foto"><img src="instalacao.png" alt="Instalação do WinCUPL"><p class="legenda">Instalação do WinCUPL.</p></div><p>Depois de terminar a instalação, abrimos o programa para começar a criação do projeto.</p></section>
-<section id="projeto"><p class="numero">02</p><h2>Criação do projeto</h2><p>Criámos um novo projeto através do WinCUPL. Na seleção do dispositivo utilizámos o ATF16V8B, com o package 20 DIP e a opção Simple.</p><div class="foto"><img src="dispositivo.png" alt="Seleção do dispositivo"><p class="legenda">Seleção do dispositivo utilizado no projeto.</p></div><p>Depois criámos o ficheiro de design e colocámos os dados necessários para o projeto.</p><div class="foto"><img src="projeto.png" alt="Criação do projeto"><p class="legenda">Criação do projeto no WinCUPL.</p></div></section>
-<section id="codigo"><p class="numero">03</p><h2>Código utilizado</h2><p>O projeto representa uma porta lógica AND. Foram definidas duas entradas, A e B, e uma saída Y.</p><div class="codigo">Name     PortaAND;
+
+<!-- INTRODUÇÃO -->
+
+<div class="intro" id="tutorial">
+
+    <h2>👋 Antes de começar</h2>
+
+    <p>
+        Este tutorial foi criado para mostrar, de forma simples,
+        como instalar o WinCUPL, criar um projecto, escrever um pequeno
+        circuito lógico e verificar se a compilação foi realizada sem erros.
+    </p>
+
+    <p>
+        A ideia é que um colega que nunca utilizou o programa consiga
+        seguir os passos sem precisar de conhecer previamente o WinCUPL.
+    </p>
+
+</div>
+
+
+<!-- PASSOS -->
+
+<div class="passos">
+
+    <div class="passo-mini">
+        <strong>01</strong>
+        Instalar
+    </div>
+
+    <div class="passo-mini">
+        <strong>02</strong>
+        Projecto
+    </div>
+
+    <div class="passo-mini">
+        <strong>03</strong>
+        Código
+    </div>
+
+    <div class="passo-mini">
+        <strong>04</strong>
+        Compilar
+    </div>
+
+    <div class="passo-mini">
+        <strong>05</strong>
+        Corrigir
+    </div>
+
+</div>
+
+
+<!-- 01 -->
+
+<section id="instalacao">
+
+    <div class="numero">PASSO 01</div>
+
+    <h2>Instalar o WinCUPL</h2>
+
+    <div class="objectivo">
+
+        <strong>🎯 Objectivo</strong>
+
+        Instalar o programa e deixá-lo pronto para criar o primeiro projecto.
+
+    </div>
+
+    <ol class="lista">
+
+        <li>Descarregar o WinCUPL a partir da página oficial da Microchip.</li>
+
+        <li>Executar o instalador.</li>
+
+        <li>Seguir os passos apresentados pelo instalador.</li>
+
+        <li>Terminar a instalação.</li>
+
+        <li>Abrir o WinCUPL.</li>
+
+    </ol>
+
+    <div class="video">
+
+        <video controls>
+
+            <!--
+            COLOQUEM AQUI O VOSSO VÍDEO.
+            Exemplo:
+            tutorial-wincupl.mp4
+            -->
+
+            <source src="tutorial-wincupl.mp4" type="video/mp4">
+
+            O teu navegador não suporta vídeo.
+
+        </video>
+
+        <div class="video-info">
+            🎥 Vídeo: instalação e preparação do WinCUPL.
+        </div>
+
+    </div>
+
+    <p>
+        Depois de abrir o programa, podemos avançar para a criação do projecto.
+    </p>
+
+</section>
+
+
+<!-- 02 -->
+
+<section id="projeto">
+
+    <div class="numero">PASSO 02</div>
+
+    <h2>Criar o primeiro projecto</h2>
+
+    <div class="objectivo">
+
+        <strong>🎯 Objectivo</strong>
+
+        Criar um projecto simples e definir o dispositivo que será utilizado.
+
+    </div>
+
+    <ol class="lista">
+
+        <li>Criar um novo projecto no WinCUPL.</li>
+
+        <li>Escolher o dispositivo utilizado no exercício.</li>
+
+        <li>Neste projecto foi utilizado o <strong>ATF16V8B</strong>.</li>
+
+        <li>Seleccionar o package utilizado na aula.</li>
+
+        <li>Preencher os dados do projecto.</li>
+
+        <li>No campo <strong>Designer</strong>, colocar os nomes dos elementos do grupo.</li>
+
+    </ol>
+
+    <div class="sucesso">
+
+        <strong>💡 Dica</strong>
+
+        Confirma sempre o dispositivo antes de começar a escrever o código.
+        O código pode depender do dispositivo seleccionado.
+
+    </div>
+
+</section>
+
+
+<!-- 03 -->
+
+<section id="codigo">
+
+    <div class="numero">PASSO 03</div>
+
+    <h2>Escrever o código</h2>
+
+    <div class="objectivo">
+
+        <strong>🎯 Objectivo</strong>
+
+        Definir duas entradas e uma saída para criar uma porta lógica AND.
+
+    </div>
+
+    <p>
+        O nosso exemplo utiliza duas entradas, <strong>A</strong> e
+        <strong>B</strong>, e uma saída chamada <strong>Y</strong>.
+    </p>
+
+    <div class="codigo-area">
+
+        <button class="copiar" onclick="copiarCodigo()">
+            Copiar código
+        </button>
+
+        <pre class="codigo" id="codigoPLD">Name     PortaAND;
 PartNo   00;
 Date     06/10/2026;
 Revision 01;
@@ -36,12 +596,315 @@ PIN 1 = A;
 PIN 2 = B;
 PIN 19 = Y;
 
-Y = A &amp; B;</div><div class="foto"><img src="codigo.png" alt="Código do projeto no WinCUPL"><p class="legenda">Código utilizado no projeto.</p></div><h3>Funcionamento</h3><p>A saída Y só fica ativa quando as duas entradas, A e B, estão ativas.</p><table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table></section>
-<section id="compilacao"><p class="numero">04</p><h2>Compilação</h2><p>Depois de escrever o código, guardámos o projeto e fizemos a compilação para verificar se existiam erros.</p><div class="foto"><img src="compilacao.png" alt="Resultado da compilação"><p class="legenda">Resultado da compilação.</p></div><div class="resultado"><strong>Resultado:</strong> Design compiled successfully.<br><strong>Error Code:</strong> 0</div><p>A compilação foi concluída com sucesso e não foram encontrados erros no projeto.</p></section>
-<section id="problema"><p class="numero">05</p><h2>Problema encontrado</h2><p>Durante a primeira compilação apareceu um erro relacionado com um carácter acentuado no nome do Designer.</p><div class="foto"><img src="erro.png" alt="Erro encontrado durante a compilação"><p class="legenda">Erro apresentado durante a primeira compilação.</p></div><p>Para resolver o problema retiramos o acento da palavra “Rosário”, ficando “Rosario”. Depois voltámos a compilar o projeto e a compilação foi realizada com sucesso.</p></section>
-<section id="conclusao"><p class="numero">06</p><h2>Conclusão</h2><p>Com este trabalho aprendemos a instalar e utilizar o WinCUPL para criar e compilar um projeto simples. Também aprendemos a identificar e corrigir um erro no código. A principal dificuldade foi perceber alguns dos passos do programa, mas conseguimos terminar o projeto e compilá-lo sem erros.</p></section>
-<section id="fontes"><p class="numero">07</p><h2>Fontes</h2><p>Nesta parte devem colocar as páginas que consultaram durante a realização do trabalho.</p><ul><li><a class="fonte" href="#">Fonte consultada 1</a></li><li><a class="fonte" href="#">Fonte consultada 2</a></li></ul><p>Substituam as fontes acima pelas ligações que realmente utilizaram.</p></section>
+Y = A & B;</pre>
+
+    </div>
+
+    <p>
+        A última linha representa a operação lógica AND:
+        a saída <strong>Y</strong> só fica a 1 quando
+        <strong>A</strong> e <strong>B</strong> estão ambas a 1.
+    </p>
+
+    <h3>Tabela de verdade</h3>
+
+    <table class="tabela">
+
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>Y</th>
+        </tr>
+
+        <tr>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+
+    </table>
+
+</section>
+
+
+<!-- 04 -->
+
+<section id="compilacao">
+
+    <div class="numero">PASSO 04</div>
+
+    <h2>Compilar o projecto</h2>
+
+    <div class="objectivo">
+
+        <strong>🎯 Objectivo</strong>
+
+        Verificar se o código contém erros e se o projecto pode ser compilado.
+
+    </div>
+
+    <ol class="lista">
+
+        <li>Guardar o ficheiro <strong>.PLD</strong>.</li>
+
+        <li>Seleccionar a opção de compilação.</li>
+
+        <li>Aguardar que o WinCUPL termine o processo.</li>
+
+        <li>Verificar o resultado apresentado pelo programa.</li>
+
+    </ol>
+
+    <div class="video">
+
+        <video controls>
+
+            <source src="compilacao-wincupl.mp4" type="video/mp4">
+
+            O teu navegador não suporta vídeo.
+
+        </video>
+
+        <div class="video-info">
+            🎥 Vídeo: compilação do projecto.
+        </div>
+
+    </div>
+
+    <div class="sucesso">
+
+        <strong>✅ Resultado esperado</strong>
+
+        O projecto deve terminar a compilação sem erros.
+
+    </div>
+
+</section>
+
+
+<!-- 05 -->
+
+<section id="problema">
+
+    <div class="numero">PASSO 05</div>
+
+    <h2>Encontraste um erro?</h2>
+
+    <div class="erro">
+
+        <h3>⚠️ Problema encontrado no nosso projecto</h3>
+
+        <p>
+            Durante a primeira compilação encontrámos um erro relacionado
+            com um carácter acentuado no nome do Designer.
+        </p>
+
+        <p>
+            Para resolver o problema, retiramos o acento de
+            <strong>“Rosário”</strong>, passando para
+            <strong>“Rosario”</strong>.
+        </p>
+
+        <p>
+            Depois guardámos novamente o projecto e voltámos a compilá-lo.
+            Desta vez, a compilação foi concluída com sucesso.
+        </p>
+
+    </div>
+
+    <div class="objectivo">
+
+        <strong>💡 O que aprendemos?</strong>
+
+        Quando aparece um erro, não devemos simplesmente ignorá-lo.
+        É importante ler a mensagem apresentada pelo programa e tentar
+        perceber qual parte do projecto está a causar o problema.
+
+    </div>
+
+</section>
+
+
+<!-- CHECKLIST -->
+
+<section id="checklist">
+
+    <div class="numero">FINAL</div>
+
+    <h2>Checklist do projecto</h2>
+
+    <p>
+        Antes de entregar, confirma todos estes pontos:
+    </p>
+
+    <ul class="checklist">
+
+        <li>
+            <input type="checkbox">
+            WinCUPL instalado
+        </li>
+
+        <li>
+            <input type="checkbox">
+            Projecto criado
+        </li>
+
+        <li>
+            <input type="checkbox">
+            Nome colocado no Designer
+        </li>
+
+        <li>
+            <input type="checkbox">
+            Código inserido
+        </li>
+
+        <li>
+            <input type="checkbox">
+            Projecto compilado
+        </li>
+
+        <li>
+            <input type="checkbox">
+            Erros verificados
+        </li>
+
+        <li>
+            <input type="checkbox">
+            Ficheiro .PLD guardado
+        </li>
+
+    </ul>
+
+</section>
+
+
+<!-- CONCLUSÃO -->
+
+<section id="conclusao">
+
+    <div class="numero">CONCLUSÃO</div>
+
+    <h2>O que aprendemos?</h2>
+
+    <p>
+        Com este tutorial aprendemos os passos principais para instalar
+        e utilizar o WinCUPL na criação de um projecto simples.
+    </p>
+
+    <p>
+        Também aprendemos que os erros de compilação podem ajudar a
+        identificar problemas no projecto e que é importante verificar
+        a mensagem apresentada pelo programa antes de voltar a compilar.
+    </p>
+
+</section>
+
+
+<!-- FONTES -->
+
+<section id="fontes" class="fontes">
+
+    <div class="numero">FONTES</div>
+
+    <h2>Documentação consultada</h2>
+
+    <p>
+        Para realizar este tutorial foram consultadas fontes oficiais
+        relacionadas com o WinCUPL e com a linguagem CUPL.
+    </p>
+
+    <ul>
+
+        <li>
+            <a href="https://www.microchip.com/en-us/development-tool/WinCUPL"
+               target="_blank">
+                Microchip — WinCUPL
+            </a>
+            <br>
+            Página oficial do WinCUPL e acesso à documentação.
+        </li>
+
+        <li>
+            <a href="https://onlinedocs.microchip.com/oxy/GUID-C8F8D1B0-413D-4C1A-AC0A-696EE4E657FF-en-US-1/index.html"
+               target="_blank">
+                Microchip — WinCUPL II User Guide
+            </a>
+            <br>
+            Documentação oficial sobre utilização do WinCUPL II.
+        </li>
+
+        <li>
+            <a href="https://ww1.microchip.com/downloads/en/DeviceDoc/doc0737.pdf"
+               target="_blank">
+                Microchip — WinCUPL User's Manual
+            </a>
+            <br>
+            Manual oficial do WinCUPL com informação sobre CUPL,
+            compilação e exemplos.
+        </li>
+
+    </ul>
+
+</section>
+
 </main>
-<footer><p>11.º TGEI — Tutorial WinCUPL</p><p>Salvador Rosário e Santiago Martins</p></footer>
+
+
+<footer>
+
+    <p><strong>Tutorial WinCUPL</strong></p>
+
+    <p>
+        Salvador Rosário — N.º 15 · Santiago Martins — N.º 17
+    </p>
+
+    <p>
+        11.º TGEI · 2026/2027
+    </p>
+
+</footer>
+
+
+<script>
+
+function copiarCodigo(){
+
+    const codigo = document.getElementById("codigoPLD").innerText;
+
+    navigator.clipboard.writeText(codigo);
+
+    const botao = document.querySelector(".copiar");
+
+    botao.innerText = "✓ Copiado!";
+
+    setTimeout(function(){
+
+        botao.innerText = "Copiar código";
+
+    },2000);
+
+}
+
+</script>
+
 </body>
 </html>
